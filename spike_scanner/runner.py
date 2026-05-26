@@ -36,6 +36,11 @@ import strategy
 import universe as univ
 from signals import momentum, options_flow, sec_filings, sentiment, short_interest, technicals
 
+# Ensure data directories exist on first run
+os.makedirs(config.DATA_DIR, exist_ok=True)
+os.makedirs(config.CACHE_DIR, exist_ok=True)
+os.makedirs(config.REPORT_DIR, exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s  %(levelname)-7s  %(message)s",
