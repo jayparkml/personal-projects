@@ -49,3 +49,11 @@ dist/
 
 # Claude
 .claude/worktrees/
+
+# spike_scanner — generated data
+spike_scanner/data/
+
+# dip-ladder — generated state and output
+dip-ladder/state.json
+dip-ladder/logs/
+dip-ladder/backtest_results/
