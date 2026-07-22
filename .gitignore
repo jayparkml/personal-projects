@@ -57,3 +57,6 @@ spike_scanner/data/
 dip-ladder/state.json
 dip-ladder/logs/
 dip-ladder/backtest_results/
+
+# chicago-neighborhoods — generated data and cached API responses
+chicago-neighborhoods/data/
