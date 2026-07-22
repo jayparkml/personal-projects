@@ -1,0 +1,91 @@
+{
+  "open": {
+    "CTSH": {
+      "entry_date": "2026-04-14",
+      "entry_price": 60.785,
+      "sector": "Technology"
+    },
+    "ADBE": {
+      "entry_date": "2026-04-14",
+      "entry_price": 239.7,
+      "sector": "Technology"
+    },
+    "CI": {
+      "entry_date": "2026-04-14",
+      "entry_price": 274.19,
+      "sector": "Healthcare"
+    },
+    "ACN": {
+      "entry_date": "2026-04-14",
+      "entry_price": 190.45,
+      "sector": "Technology"
+    },
+    "DAL": {
+      "entry_date": "2026-04-14",
+      "entry_price": 70.085,
+      "sector": "Industrials"
+    },
+    "ACGL": {
+      "entry_date": "2026-06-15",
+      "entry_price": 91.71,
+      "sector": "Financial Services"
+    },
+    "BSX": {
+      "entry_date": "2026-06-15",
+      "entry_price": 47.43,
+      "sector": "Healthcare"
+    },
+    "DECK": {
+      "entry_date": "2026-06-15",
+      "entry_price": 114.6445,
+      "sector": "Consumer Cyclical"
+    },
+    "ALL": {
+      "entry_date": "2026-06-15",
+      "entry_price": 221.0,
+      "sector": "Financial Services"
+    },
+    "CF": {
+      "entry_date": "2026-06-15",
+      "entry_price": 106.2036,
+      "sector": "Basic Materials"
+    }
+  },
+  "closed": {
+    "FSLR": {
+      "entry_date": "2026-04-14",
+      "entry_price": 202.325,
+      "sector": "Technology",
+      "exit_date": "2026-06-15",
+      "exit_price": 270.38
+    },
+    "ELV": {
+      "entry_date": "2026-04-14",
+      "entry_price": 319.13,
+      "sector": "Healthcare",
+      "exit_date": "2026-06-15",
+      "exit_price": 399.52
+    },
+    "MKC": {
+      "entry_date": "2026-04-14",
+      "entry_price": 53.99,
+      "sector": "Consumer Defensive",
+      "exit_date": "2026-06-15",
+      "exit_price": 48.59
+    },
+    "UBER": {
+      "entry_date": "2026-04-14",
+      "entry_price": 72.975,
+      "sector": "Technology",
+      "exit_date": "2026-06-15",
+      "exit_price": 71.48
+    },
+    "UHS": {
+      "entry_date": "2026-04-14",
+      "entry_price": 181.44,
+      "sector": "Healthcare",
+      "exit_date": "2026-06-15",
+      "exit_price": 147.47
+    }
+  }
+}

@@ -1,0 +1,68 @@
+====================================================================================================
+INITIALIZE QUALITY VALUE PORTFOLIO
+====================================================================================================
+
+This will:
+1. Screen all S&P 500 stocks
+2. Find top 10 quality undervalued stocks
+3. Create initial positions file
+
+⏱️  Takes ~4-5 minutes
+
+Starting screening...
+
+🔍 Screening 503 S&P 500 stocks...
+⏱️  This will take ~4-5 minutes...
+
+[50/503] ATO    | Elapsed: 0.9min | ETA: 8.6min
+[100/503] SCHW   | Elapsed: 1.9min | ETA: 7.5min
+[150/503] DVN    | Elapsed: 2.8min | ETA: 6.7min
+[200/503] FIS    | Elapsed: 3.8min | ETA: 5.8min
+[250/503] ITW    | Elapsed: 4.8min | ETA: 4.8min
+[300/503] MPC    | Elapsed: 5.7min | ETA: 3.9min
+[350/503] ODFL   | Elapsed: 6.7min | ETA: 2.9min
+[400/503] ROL    | Elapsed: 7.6min | ETA: 2.0min
+[450/503] TDG    | Elapsed: 8.5min | ETA: 1.0min
+[500/503] YUM    | Elapsed: 9.5min | ETA: 0.1min
+
+✅ Found 30 quality undervalued stocks
+
+====================================================================================================
+🎯 TOP 10 QUALITY VALUE PICKS
+====================================================================================================
+ 1. UHS    - Healthcare           - P/E   7.9 (74% discount)
+      ROE: 20.5%, Rev Growth: 9.7%, D/E: 71%
+ 2. CTSH   - Technology           - P/E  13.4 (62% discount)
+      ROE: 14.9%, Rev Growth: 7.0%, D/E: 8%
+ 3. ADBE   - Technology           - P/E  14.0 (60% discount)
+      ROE: 61.3%, Rev Growth: 10.5%, D/E: 57%
+ 4. FSLR   - Technology           - P/E  14.1 (60% discount)
+      ROE: 16.0%, Rev Growth: 24.1%, D/E: 7%
+ 5. MKC    - Consumer Defensive   - P/E   8.9 (60% discount)
+      ROE: 13.8%, Rev Growth: 1.7%, D/E: 73%
+ 6. CI     - Healthcare           - P/E  12.4 (59% discount)
+      ROE: 14.3%, Rev Growth: 12.5%, D/E: 75%
+ 7. ELV    - Healthcare           - P/E  12.7 (58% discount)
+      ROE: 12.9%, Rev Growth: 12.6%, D/E: 73%
+ 8. UBER   - Technology           - P/E  15.4 (56% discount)
+      ROE: 37.2%, Rev Growth: 18.3%, D/E: 45%
+ 9. ACN    - Technology           - P/E  15.7 (55% discount)
+      ROE: 24.6%, Rev Growth: 7.4%, D/E: 26%
+10. DAL    - Industrials          - P/E  10.1 (54% discount)
+      ROE: 24.0%, Rev Growth: 2.8%, D/E: 97%
+
+====================================================================================================
+✅ PORTFOLIO INITIALIZED
+====================================================================================================
+
+Positions saved to: /Users/Jay.Park/Downloads/momentum_trader/quality_value_positions.json
+Holdings: UHS, CTSH, ADBE, FSLR, MKC, CI, ELV, UBER, ACN, DAL
+
+📋 NEXT STEPS:
+1. Review the 10 stocks above
+2. Buy equal dollar amounts of each (e.g., $1,000 per stock for $10,000 total)
+3. Update entry prices in positions file (optional, for tracking)
+4. Run monthly monitor on the last Friday of each month
+
+💡 TIP: Allocate 10% of your account to this strategy
+   Example: $100,000 account → $10,000 to quality value → $1,000 per stock

@@ -6,6 +6,12 @@ Level rules:
   Level 2: price <= 60MA  →  buy over 3 days
   Level 3: price <= 120MA →  buy over 5 days
   Level 4: price <= 120MA AND RSI < 35  →  buy over 5 days
+
+Re-trigger rules (after a level completes):
+  A completed level enters cooldown. It re-triggers only when:
+    (a) price rises above that level's MA trigger, then falls back to it, OR
+    (b) a deeper level triggers first (independent — no interaction needed)
+  While in cooldown, the level is skipped even if the condition is still met.
 """
 
 import json
@@ -24,7 +30,14 @@ LEVELS = {
 
 def _default_ticker_state() -> dict:
     return {
-        str(lvl): {"active": False, "day": 0, "total_days": cfg["total_days"], "triggered_on": None}
+        str(lvl): {
+            "active": False,
+            "day": 0,
+            "total_days": cfg["total_days"],
+            "triggered_on": None,
+            "cooldown": False,       # True after completion, waiting for bounce
+            "price_rose_above": False,  # True once price crosses back above trigger MA
+        }
         for lvl, cfg in LEVELS.items()
     }
 
@@ -56,6 +69,17 @@ def _is_triggered(level: int, ind: dict) -> bool:
     return False
 
 
+def _trigger_ma(level: int, ind: dict) -> float:
+    """Return the MA value that acts as the trigger line for a given level."""
+    if level == 1:
+        return ind["ma20"]
+    if level == 2:
+        return ind["ma60"]
+    if level in (3, 4):
+        return ind["ma120"]
+    return float("inf")
+
+
 def update_ticker(ticker: str, ind: dict, state: dict) -> tuple[dict, list[dict]]:
     """
     Advance state for one ticker and return updated state + list of buy actions.
@@ -68,16 +92,23 @@ def update_ticker(ticker: str, ind: dict, state: dict) -> tuple[dict, list[dict]
 
     today = date.today().isoformat()
     actions = []
+    price = ind["price"]
 
     for lvl in range(1, 5):
         key = str(lvl)
         lvl_state = state[ticker][key]
+
+        # Ensure cooldown fields exist for states saved before this logic was added
+        lvl_state.setdefault("cooldown", False)
+        lvl_state.setdefault("price_rose_above", False)
 
         if lvl_state["active"]:
             # Ongoing sequence: advance day
             lvl_state["day"] += 1
             if lvl_state["day"] >= lvl_state["total_days"]:
                 lvl_state["active"] = False
+                lvl_state["cooldown"] = True
+                lvl_state["price_rose_above"] = False
                 action = "complete"
             else:
                 action = "continue"
@@ -87,8 +118,30 @@ def update_ticker(ticker: str, ind: dict, state: dict) -> tuple[dict, list[dict]
                 "total_days": lvl_state["total_days"],
                 "action": action,
             })
+
+        elif lvl_state["cooldown"]:
+            # After completion: wait for price to bounce above trigger MA, then return to it
+            trigger_ma = _trigger_ma(lvl, ind)
+            if price > trigger_ma:
+                lvl_state["price_rose_above"] = True
+
+            if lvl_state["price_rose_above"] and price <= trigger_ma:
+                # Bounce complete — clear cooldown and trigger new sequence
+                lvl_state["cooldown"] = False
+                lvl_state["price_rose_above"] = False
+                lvl_state["active"] = True
+                lvl_state["day"] = 1
+                lvl_state["triggered_on"] = today
+                actions.append({
+                    "level": lvl,
+                    "day": 1,
+                    "total_days": lvl_state["total_days"],
+                    "action": "new",
+                })
+            # else: still in cooldown, no action this tick
+
         elif _is_triggered(lvl, ind):
-            # New signal
+            # New signal (no cooldown)
             lvl_state["active"] = True
             lvl_state["day"] = 1
             lvl_state["triggered_on"] = today
