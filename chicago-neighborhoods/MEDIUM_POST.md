@@ -1,4 +1,10 @@
-*Note: Medium's own editor doesn't render pasted Markdown tables — either use a Markdown-paste browser extension (e.g. "Markdown Here"), or drop each table in as a screenshot. The three charts below are real PNGs already exported to `medium_assets/` — just drag-and-drop them into the post at the marked points.*
+*Two things to know before you paste this into Medium:*
+
+*1. **Tables**: Medium's editor has no table feature at all, full stop — a pasted Markdown table just becomes a line of text with "|" characters in it. Every table below has already been rendered as a PNG in `medium_assets/tables/` (regenerate them anytime with `python3 scripts/render_medium_tables.py` if you change a number). Drag each one in at its `[Insert ... here]` marker and delete the raw Markdown table right above it.*
+
+*2. **Headers, bold, and lists**: Medium's `#`/`**`/`-` shortcuts only fire while you're typing them live, character by character — pasting a finished block of text skips that entirely, which is why `##` and `**` showed up as literal characters. After pasting, go line by line: for a header, select its text and click the large "T" icon in the floating toolbar that appears (then delete the leftover `##`); for bold, delete the `**`, select the text, and hit Cmd/Ctrl+B; for a bullet list, delete the pasted `- `, put your cursor at the very start of that now-empty-looking line, and retype `- ` — because that's live typing again, Medium's auto-list kicks in. Tedious but mechanical — roughly 10 minutes for a post this length.*
+
+*The three charts below are real PNGs already exported to `medium_assets/` — drag-and-drop them into the post at the marked points, same as the tables.*
 
 ---
 
@@ -22,6 +28,8 @@ The two-score design is deliberate. A driver and a transit rider are not optimiz
 
 Every feature below is pulled from a free public API — no paid data, no scraping tricks:
 
+**[Insert `medium_assets/tables/data_sources.png` here — replaces the table below]**
+
 | Source | Access | Used for |
 |---|---|---|
 | Chicago Data Portal — Crimes | Free, no key | Crime rate per 1,000 residents |
@@ -35,6 +43,8 @@ Every raw feature gets min-max scaled to a 0–1 range across all 77 areas (feat
 
 **Driver_Score weights:**
 
+**[Insert `medium_assets/tables/driver_weights.png` here — replaces the table below]**
+
 | Feature | Weight | Why |
 |---|---|---|
 | Crime rate per 1k | 0.25 | Safety |
@@ -45,6 +55,8 @@ Every raw feature gets min-max scaled to a 0–1 range across all 77 areas (feat
 | Affordability index (income ÷ annual rent) | 0.10 | General cost of living |
 
 **Transit_Score weights:**
+
+**[Insert `medium_assets/tables/transit_weights.png` here — replaces the table below]**
 
 | Feature | Weight | Why |
 |---|---|---|
@@ -68,6 +80,8 @@ Three honest limitations, because a model like this is only useful if you know w
 
 ### Top 5 for Car Owners
 
+**[Insert `medium_assets/tables/top5_driver.png` here — replaces the table below]**
+
 | Rank | Community Area | Driver_Score |
 |---|---|---|
 | 1 | Forest Glen | 81.3 |
@@ -77,6 +91,8 @@ Three honest limitations, because a model like this is only useful if you know w
 | 5 | North Center | 77.8 |
 
 ### Top 5 for Non-Car Owners
+
+**[Insert `medium_assets/tables/top5_transit.png` here — replaces the table below]**
 
 | Rank | Community Area | Transit_Score |
 |---|---|---|
@@ -113,11 +129,15 @@ Splitting the city on the median of each score gives four groups:
 
 Here's the part I didn't expect going in: **the "worst for transit" extreme is much more extreme than the "worst for driving" extreme.**
 
+**[Insert `medium_assets/tables/gap_car_dependent.png` here — replaces the table below]**
+
 | Most car-dependent (Driver − Transit) | Gap |
 |---|---|
 | East Side | +36.2 |
 | Hegewisch | +32.6 |
 | Morgan Park | +28.6 |
+
+**[Insert `medium_assets/tables/gap_transit_leaning.png` here — replaces the table below]**
 
 | Most transit-leaning (Transit − Driver) | Gap |
 |---|---|
